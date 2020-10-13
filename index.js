@@ -39,7 +39,7 @@ function ReactIPFSDropzone(props) {
 
                 case 2:
                   ipfs = _context.sent;
-                  console.log("IPFS Node created for dropzone");
+                  console.debug("=> IPFS Dropzone: IPFS node created");
 
                 case 4:
                 case "end":
@@ -54,10 +54,10 @@ function ReactIPFSDropzone(props) {
         };
       }();
 
-      console.log("Creating IPFS node");
+      console.debug("=> IPFS Dropzone: Creating IPFS node");
       initIPFS();
     } else if (window.ipfs && !ipfs) {
-      console.log("Reusing open IPFS node");
+      console.debug("=> IPFS Dropzone: Reusing open IPFS node");
       ipfs = window.ipfs;
     }
   }, [window.ipfs]);
@@ -68,11 +68,15 @@ function ReactIPFSDropzone(props) {
         (0, _blobToBuffer["default"])(file, function (err, buff) {
           if (err) return cb(err);
           ipfs.add(buff).then(function (results) {
-            cb(null, results.cid.string);
+            console.debug("=> IPFS Dropzone added: ", results.cid.string);
+            cb(null, {
+              name: file.name,
+              cid: results.cid.string
+            });
           });
         });
       }, function (err, results) {
-        if (err) return console.error("IPFS Upload Error: ", err);
+        if (err) return console.error("=> IPFS Dropzone: IPFS Upload Error: ", err);
         props.onLoad(results);
       });
     }
@@ -86,8 +90,8 @@ function ReactIPFSDropzone(props) {
   }, function (_ref2) {
     var getRootProps = _ref2.getRootProps,
         getInputProps = _ref2.getInputProps;
-    return /*#__PURE__*/_react["default"].createElement("div", _extends({}, getRootProps(), props, {
+    return /*#__PURE__*/_react["default"].createElement("div", _extends({
       className: "react-ipfs-dropzone"
-    }), /*#__PURE__*/_react["default"].createElement("input", getInputProps()), props.loadBody ? props.loadBody(isDragActive) : "Drop files here");
+    }, getRootProps(), props), /*#__PURE__*/_react["default"].createElement("input", getInputProps()), props.loadBody ? props.loadBody(isDragActive) : "Drop files here");
   });
 }
