@@ -1,7 +1,6 @@
-Cut out the middleman and upload your content straight to IPFS
-
 ## React IPFS Dropzone
 
+Cut out the middleman and upload your content straight to IPFS
 
 ## Installation
 
