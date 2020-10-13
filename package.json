@@ -1,5 +1,5 @@
 {
-  "name": "@thetechcompany/react-ipfs-dropzone",
+  "name": "react-ipfs-dropzone",
   "version": "1.0.0",
   "main": "index.js",
   "repository": "git@github.com:TheTechCompany/react-ipfs-dropzone.git",
