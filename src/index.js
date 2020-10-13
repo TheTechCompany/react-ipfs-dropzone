@@ -29,7 +29,7 @@ export default function ReactIPFSDropzone(props){
           if(err) return cb(err)
           ipfs.add(buff).then((results) => {
             console.debug("=> IPFS Dropzone added: ", results.cid.string)
-            cb(null, results.cid.string)
+            cb(null, {name: file.name, cid: results.cid.string})
           })
         })
       }, (err, results) => {
