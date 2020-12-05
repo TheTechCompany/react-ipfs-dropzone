@@ -83,8 +83,10 @@ function ReactIPFSDropzone(props) {
           if (err) return cb(err);
           ipfs.add(buff).then(function (results) {
             console.debug("=> IPFS Dropzone added: ", results.cid.string);
-            var file = parseName(file.name);
-            cb(null, _objectSpread(_objectSpread({}, file), {}, {
+
+            var _file = parseName(file.name);
+
+            cb(null, _objectSpread(_objectSpread({}, _file), {}, {
               cid: results.cid.string
             }));
           });

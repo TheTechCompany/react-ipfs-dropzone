@@ -34,8 +34,8 @@ export default function ReactIPFSDropzone(props){
           if(err) return cb(err)
           ipfs.add(buff).then((results) => {
             console.debug("=> IPFS Dropzone added: ", results.cid.string)
-            let file = parseName(file.name)
-            cb(null, {...file, cid: results.cid.string})
+            let _file = parseName(file.name)
+            cb(null, {..._file, cid: results.cid.string})
           })
         })
       }, (err, results) => {
